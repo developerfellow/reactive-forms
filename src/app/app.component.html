@@ -6,13 +6,26 @@
                     <label>Enter Name:</label>
                    <input type="text" class="form-control" formControlName="username">
                    <div class="alert alert-danger" *ngIf="signupForm.get('username')?.touched && signupForm.get('username')?.invalid">
-                     <span>Username is a required Field</span>
+                    <span *ngIf="signupForm.get('username')?.errors?.['required']">
+                        Name is a required field
+                  </span>
+                  <span *ngIf="signupForm.get('username')?.errors?.['minlength']">
+                    Name must contains atleast 5 characters
+              </span>
 
                    </div>
                 </div>
                 <div class="form-group">
                     <label>Enter Email:</label>
                    <input type="text" class="form-control" formControlName="email">
+                   <div *ngIf="signupForm.get('email')?.touched && signupForm.get('email')?.invalid" class="alert alert-danger">
+                    <span *ngIf="signupForm.get('email')?.errors?.['required']">
+                        Email is a required field
+                  </span>
+                  <span *ngIf="signupForm.get('email')?.errors?.['email']">
+                     Please enter a vali email address
+              </span>
+                   </div>
                 </div>
                 <input [disabled]="signupForm.invalid" type="submit" class="btn btn-primary"/>
             </form> 

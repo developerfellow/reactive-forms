@@ -9,11 +9,11 @@ export class AppComponent {
   signupForm:FormGroup;
   constructor(){
     this.signupForm = new FormGroup({
-      username:new FormControl('',Validators.required),
-      email:new FormControl('',Validators.required)
+      username:new FormControl('',[Validators.required,Validators.minLength(5)]),
+      email:new FormControl('',[Validators.required,Validators.email])
     })
   }
   onSubmitHandler(){
-    console.log(this.signupForm);
+    console.log(this.signupForm.value);
   }
 }
